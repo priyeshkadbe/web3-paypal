@@ -45,6 +45,8 @@ jobs:
         with:
           node-version: "16"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+      - name: Print PATH
+        run: echo $PATH
       - name: Install dependencies and build
         run: |
           cd frontend
