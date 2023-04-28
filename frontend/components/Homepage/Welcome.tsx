@@ -4,7 +4,7 @@ function Welcome() {
 
   // console.log("hey", alchemyId);
   return (
-    <h1>Connected to {process.env.NEXT_PUBLIC_ALCHEMY_ID} hey</h1>
+    <h1>Connected to {process.env.NEXT_PUBLIC_ALCHEMY_ID}</h1>
   );
 }
 
