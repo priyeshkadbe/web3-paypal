@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: List contents of current directory
+        run: ls -la
       - name: Detect package manager
         id: detect-package-manager
         run: |
