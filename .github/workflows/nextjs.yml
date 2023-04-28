@@ -45,8 +45,9 @@ jobs:
         with:
           node-version: "16"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-      - name: Print PATH
-        run: echo $PATH
+          path: ${{ github.workspace }}/frontend/node_modules/.bin
+      - name: Print node_modules/.bin contents
+        run: ls -la ${{ github.workspace }}/frontend/node_modules/.bin
       - name: Install dependencies and build
         run: |
           cd frontend
