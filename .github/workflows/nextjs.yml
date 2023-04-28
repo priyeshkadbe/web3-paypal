@@ -52,7 +52,6 @@ jobs:
         env:
           runner: ${{ steps.detect-package-manager.outputs.runner }}
           command: ${{ steps.detect-package-manager.outputs.command }}
-        working-directory: frontend
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
