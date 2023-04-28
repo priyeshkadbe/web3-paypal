@@ -45,18 +45,12 @@ jobs:
         with:
           node-version: "16"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-          path: ${{ github.workspace }}/frontend/node_modules/.bin
-      - name: Print node_modules/.bin contents
-        run: ls -la ${{ github.workspace }}/frontend/node_modules/.bin
-      - name: Install dependencies and build
-        run: |
-          cd frontend
-          ${{ steps.detect-package-manager.outputs.runner }} ${{ steps.detect-package-manager.outputs.command }}
-          ${{ steps.detect-package-manager.outputs.runner }} next build
-          ${{ steps.detect-package-manager.outputs.runner }} next export
-        env:
-          runner: ${{ steps.detect-package-manager.outputs.runner }}
-          command: ${{ steps.detect-package-manager.outputs.command }}
+      - name: Install dependencies
+        run: cd frontend && ${{ steps.detect-package-manager.outputs.runner }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Ensure node_modules directory is present
+        run: cd frontend && test -d node_modules || ${{ steps.detect-package-manager.outputs.runner }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Build and export
+        run: cd frontend && ${{ steps.detect-package-manager.outputs.runner }} next build && ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
